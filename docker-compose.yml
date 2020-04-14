@@ -1,0 +1,15 @@
+version: '3'
+services:
+  traceip:
+    image: "traceip"
+    environment:
+      - REDIS_HOST=redis
+      
+    ports:
+      - "9888:8888"
+      
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+    
