@@ -57,7 +57,7 @@ La clase *com.challenge.traceip.rest.ApiResource* implementa el API de consulta
 
 # Generación de Imagen Docker
 
-Ejecutar
+Ejecutar desde el directorio raiz del proyecto
 
 > docker build -t traceip .
 
@@ -66,7 +66,7 @@ Ejecutar
 
 Se provee un archivo docker-compose para levantar la aplicación junto con el servicio Redis
 
-Ejecutar
+Ejecutar desde el directorio raiz del proyecto
 
 > docker-compose up
 
@@ -109,6 +109,8 @@ Resultado:
 Ejecutar
 
 > curl localhost:8001/api/stats
+
+
 
 
 # TODO

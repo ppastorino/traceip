@@ -4,7 +4,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 
 /**
  * Clase base para repositorios basados en Redis.
- * Podria utilizarse spring-data pero para los fines del ejercicio a los fines del ejercicio se prefiere manejarlo de forma explicita.
+ * Podria utilizarse spring-data pero para los fines del ejercicio se prefiere manejarlo de forma explicita.
  * 
  * @author pablo
  *
