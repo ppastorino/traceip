@@ -1,0 +1,1 @@
+curl -s localhost:8001/api/trace?ip=$1

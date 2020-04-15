@@ -76,12 +76,33 @@ Ejecutar
 
 Ejecutar:
 
-> curl localhost:8001/api/ip/{ip-address}
+> curl -s localhost:8001/api/trace?ip={ip-address}
 
 Ejemplos
 
-> curl localhost:8001/api/ip/200.147.36.65
-> curl localhost:8001/api/ip/5.6.7.8
+> curl -s localhost:8001/api/trace?ip=200.147.36.65
+> curl -s localhost:8001/api/trace?ip=5.6.7.8
+> curl -s localhost:8001/api/trace?ip=23.205.127.43
+
+Resultado:
+
+{
+  "country" : {
+    "code" : "US",
+    "timeZones" : [ "UTC-12:00", "UTC-11:00", "UTC-10:00", "UTC-09:00", "UTC-08:00", "UTC-07:00", "UTC-06:00", "UTC-05:00", "UTC-04:00", "UTC+10:00", "UTC+12:00" ],
+    "languages" : [ {
+      "code" : "en",
+      "name" : "English"
+    } ],
+    "distance" : 9002
+  },
+  "currency" : {
+    "code" : "USD",
+    "base" : "EUR",
+    "rate" : 0.916
+  }
+ }
+
 
 - Consulta de Estadísticas sobre las consultas realizadas
 
@@ -93,6 +114,7 @@ Ejecutar
 # TODO
 
 - Manejo de errores
+  No se están manejando errores (problemas de comunicación con APIs, respuesta de error de las APIs, problemas con persistencia)
 
 - Logging
 
