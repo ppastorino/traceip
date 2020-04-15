@@ -6,7 +6,7 @@ services:
       - REDIS_HOST=redis
       
     ports:
-      - "9888:8888"
+      - "8000:8001"
       
   redis:
     image: "redis:alpine"

@@ -7,27 +7,10 @@ import org.springframework.stereotype.Component;
 import com.challenge.traceip.domain.Currency;
 
 @Component
-public class CurrencyRepository implements ValueRepository<Currency> {
+public class CurrencyRepository extends RedisRepository<Currency> {
 
-	private final RedisTemplate<String,Currency> redisTemplate;
-	
 	public CurrencyRepository(RedisTemplate<String,Currency> redisTemplate) {
-		super();
-		this.redisTemplate = redisTemplate;
+		super(redisTemplate, "currency:");
 	}
-
-	public Currency find(String code){
-		return redisTemplate.opsForValue().get(getEntityKey(code));
-	}
-	
-	public Currency save(String key,Currency country){
-		redisTemplate.opsForValue().set(getEntityKey(key), country);
-		return country;
-	}
-	
-	private String getEntityKey(String code) {
-		return "currency:" + code;
-	}
-
 
 }

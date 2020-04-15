@@ -1,5 +1,6 @@
 package com.challenge.traceip.service;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +19,10 @@ public class CountryService implements ValueService<Country>{
 
 	private @Value("${restcountries.uri:https://restcountries.eu/rest/v2/alpha}") String uri;
 
+	private @Value("${location.latitude:-34.603683}") double currentLatitude;
+	
+	private @Value("${location.longitude:-58.381557}") double currentLongitude;
+	
 	private final RestTemplate restTemplate;
 
 	@Getter
@@ -28,6 +33,7 @@ public class CountryService implements ValueService<Country>{
 		String[] timezones;
 		CurrencyDTO[] currencies;
 		LanguageDTO[] languages;
+		double[] latlng;
 		
 		@Getter
 		@Setter
@@ -60,9 +66,13 @@ public class CountryService implements ValueService<Country>{
 		final Language[] languages = Arrays.stream(result.languages)
 				.map(l -> Language.builder().code(l.iso639_1).name(l.name).build()).toArray(n -> new Language[n]);
 		
+		final double distance = DistanceCalculator.distance(this.currentLatitude, this.currentLongitude, 
+				result.latlng[0], result.latlng[1]);
+		
 		return Country.builder().code(countryCode).timeZones(result.timezones)
 				.currencyCode(result.getDefaultCurrencyCode())
 				.languages(languages)
+				.distance(new BigDecimal(distance).setScale(0, BigDecimal.ROUND_HALF_DOWN))
 				.build();
 
 	}

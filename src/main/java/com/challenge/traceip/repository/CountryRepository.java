@@ -6,31 +6,9 @@ import org.springframework.stereotype.Component;
 import com.challenge.traceip.domain.Country;
 
 @Component
-public class CountryRepository implements ValueRepository<Country> {
+public class CountryRepository extends RedisRepository<Country> {
 
-	private final RedisTemplate<String,Country> redisTemplate;
-	
 	public CountryRepository(RedisTemplate<String,Country> redisTemplate) {
-		super();
-		this.redisTemplate = redisTemplate;
+		super(redisTemplate,"country:");
 	}
-
-	public Country find(String code){
-		return redisTemplate.opsForValue().get(getEntityKey(code));
-	}
-	
-	public Country save(String key,Country country){
-		redisTemplate.opsForValue().set(getEntityKey(key), country);
-		return country;
-	}
-	
-	private String getCounterKey(String code) {
-		return "counter:" + code;
-	}
-
-	private String getEntityKey(String code) {
-		return "country:" + code;
-	}
-
-
 }

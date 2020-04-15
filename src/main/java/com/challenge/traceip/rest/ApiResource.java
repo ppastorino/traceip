@@ -1,11 +1,14 @@
 package com.challenge.traceip.rest;
 
+import java.util.Map;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.challenge.traceip.domain.Country;
+import com.challenge.traceip.domain.IpInfo;
+import com.challenge.traceip.domain.Stats;
 import com.challenge.traceip.service.TraceIpService;
 
 
@@ -26,9 +29,19 @@ public class ApiResource {
 		this.service = infoService;
 	}
 
-	@PutMapping("/ip/{ip}")
-    public Country getIpInfo(@PathVariable String ip) {
+	@GetMapping("/ip/{ip}")
+    public IpInfo getIpInfo(@PathVariable String ip) {
 		return service.traceIp(ip);
+    }
+
+	@GetMapping("/stats")
+    public Stats getStats() {
+		return service.getStats();
+    }
+	
+	@GetMapping("/counters")
+    public Map<String, Long> getCounters() {
+		return service.getCounters();
     }
 
 }

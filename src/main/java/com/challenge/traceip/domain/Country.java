@@ -3,6 +3,8 @@ package com.challenge.traceip.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,5 +30,7 @@ public class Country implements Serializable {
 	private String[] timeZones;
 	private Language[] languages;
 	private BigDecimal distance;
+	
+	@JsonIgnore
 	private String currencyCode;
 }
