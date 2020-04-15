@@ -84,7 +84,9 @@ Ejecutar:
 Ejemplos
 
 > curl -s localhost:8001/api/trace?ip=200.147.36.65
+
 > curl -s localhost:8001/api/trace?ip=5.6.7.8
+
 > curl -s localhost:8001/api/trace?ip=23.205.127.43
 
 Resultado:
@@ -112,9 +114,17 @@ Resultado:
 
 Ejecutar
 
-> curl localhost:8001/api/stats
+> curl -s localhost:8001/api/stats
 
-
+```
+{
+  "maxDistance" : 11566,
+  "maxDistanceCountry" : "DE",
+  "minDistance" : 520,
+  "minDistanceCountry" : "AR",
+  "avg" : 8177.692
+}
+```
 
 
 # TODO
