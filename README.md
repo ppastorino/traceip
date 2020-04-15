@@ -76,7 +76,12 @@ Ejecutar
 
 Ejecutar:
 
+> curl localhost:8001/api/ip/{ip-address}
+
+Ejemplos
+
 > curl localhost:8001/api/ip/200.147.36.65
+> curl localhost:8001/api/ip/5.6.7.8
 
 - Consulta de Estadísticas sobre las consultas realizadas
 
@@ -97,10 +102,11 @@ Ejecutar
   Una mejora a futuro es configurar el TTL específico en esas entradas para 'refrescar' la información.  
 
 - Usar cache local (en memoria) para evitar acceso a Redis (para paises y monedas)
+  Esto podría mejorar la consulta de estadísticas.
 
 - Usar cache para la consulta de IP (ip). Esto se justificaría si se detectan muchas invocaciones con las mismas ips.
 
- - Tests Unitarios y de Integración
+- Tests Unitarios y de Integración
  
- - Analizar si es correcto utilizar método GET para la consulta de IP (tiene efecto secundario)
+- Analizar si es correcto utilizar método GET para la consulta de IP (tiene efecto secundario)
  
