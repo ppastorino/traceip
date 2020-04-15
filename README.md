@@ -26,11 +26,13 @@ Se almacenan los resultados de países y monedas.
 La aplicación está dividida en las capas
 
 ## Dominio
-Package com.challenge.traceip.domain
+Package com.challenge.traceip.domain.
+
 POJOs (Plain Old Java Objects) con la informacion que maneja la aplicación.
 
 ## Persistencia
-Package  com.challenge.traceip.repository
+Package  com.challenge.traceip.repository.
+
 Implementación de los repostirios basados en Redis.
   
 - Repositorio para informacion de paises (CountryRepository)
@@ -43,14 +45,15 @@ Implementación de los repostirios basados en Redis.
   Utiliza operaciones de incremento y scan
       
 ## Servicio
-Package com.challenge.traceip.service
+Package com.challenge.traceip.service.
+
 
 - El servicio principal esta implementado en la clase *com.challenge.traceip.service.TraceIpService*
 - Se utiliza RestTemplate para la invocación a las diferentes APIs
 - Se minimizan las llamadas a las APIs mediante caching (ver com.challenge.traceip.service.CachedValueService) 
        
 ## Rest
-Package com.challenge.traceip.rest
+Package com.challenge.traceip.rest.
 
 La clase *com.challenge.traceip.rest.ApiResource* implementa el API de consulta
 
@@ -86,6 +89,7 @@ Ejemplos
 
 Resultado:
 
+```
 {
   "country" : {
     "code" : "US",
@@ -102,7 +106,7 @@ Resultado:
     "rate" : 0.916
   }
  }
-
+```
 
 - Consulta de Estadísticas sobre las consultas realizadas
 
