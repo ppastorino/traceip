@@ -26,7 +26,6 @@ public class TraceIpService {
 	private CachedValueService<Currency> currencyService;
 
 	private QueryCounterRepository counterRepository;
-	private CacheStore<Country>  countryRepository;
 
 	public TraceIpService(Ip2CountryService ip2CountryService,
 			CacheStore<Country>  countryRepository,ValueService<Country> countryService,
@@ -36,7 +35,6 @@ public class TraceIpService {
 		super();
 		this.ip2CountryService = ip2CountryService;
 		this.countryService = new CachedValueService<>(countryRepository, countryService);
-		this.countryRepository = countryRepository;
 		this.currencyService = new CachedValueService<>(currencyRepository, currencyService);
 		this.counterRepository = counterRepository;
 	}
@@ -54,18 +52,12 @@ public class TraceIpService {
 	}
 
 	public Stats getStats(){
-		
 		final Stats stats = new Stats();
-		
 		final Map<String,Long> counters = this.getCounters();
 	
 		for(Map.Entry<String, Long> e: counters.entrySet()){
-			Country country = this.countryRepository.find(e.getKey());
-			if(country != null){
-				stats.update(e.getKey(), country.getDistance(), e.getValue());
-			}else{
-				//TODO loggear esta situacion anormal
-			}
+			final Country country = this.countryService.getValue(e.getKey());
+			stats.update(e.getKey(), country.getDistance(), e.getValue());
 		}
 		return stats;
 	}
